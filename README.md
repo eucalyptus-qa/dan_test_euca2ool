@@ -1,3 +1,32 @@
+
+dan_test_euca2ool
+=================
+
+## Description
+
+Same as dan_test_dev -- Using euca2ools instead, this testunit creates kaypairs, allocates IP, launches an instance, and terminates it. By Default, it runs 3 iterations.
+Procedure
+
+## Procedure
+
+1. Get the list of amis using euca-describe-images, choose a random one
+2. Get the list of keypairs using euca-describe-keypairs, choose a random one
+3. Get the list of address for admin account using euca-describe-addresses, choose a random one
+4. Get the list of groups using euca-describe-groups, choose a random one
+5. Run this instance and check that the euca-run-instances returns the instance information
+6. Gather all info about Instances and add them to a arrays if they are pending or running
+7. If the network is managed then check the addresses and add them to arrays containing the IPs, and grab a random IP and instance ID
+8. Check that the instance with the ID from step 2 has an exising IP other than blank or 0.0.0.0
+9. Disassociate the address with the ec2-disassociate-address command
+10. Associate the random address from step 2 with the instance with ID from step 2
+11. Login to each instance using the appropriate keys and run a command (ifconfig)
+12. If the instances dont return properly after 100 tries then use euca-get-console-output to deterimine the proper error
+
+
+<hr><hr><hr>
+
+
+
 # Eucalyptus Testunit Framework
 
 Eucalyptus Testunit Framework is designed to run a list of test scripts written by Eucalyptus developers.
